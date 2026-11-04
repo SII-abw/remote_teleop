@@ -1,0 +1,27 @@
+# Install manually only after hardware acceptance. Instances: cloud, master, slave.
+[Unit]
+Description=Remote teleoperation %i
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+Type=simple
+User=siinuc2
+WorkingDirectory=/home/siinuc2/Evo-RL/remote_teleop
+EnvironmentFile=-/home/siinuc2/Evo-RL/remote_teleop/state/deployment.env
+ExecStart=/bin/bash /home/siinuc2/Evo-RL/remote_teleop/scripts/run.sh %i configs/%i.json
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=30
+KillSignal=SIGTERM
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/home/siinuc2/Evo-RL/remote_teleop/state /home/siinuc2/Evo-RL/remote_teleop/datasets /home/siinuc2/Evo-RL/remote_teleop/configs
+# Restrict device access per deployment after confirming ROS/shared-memory and serial requirements.
+
+[Install]
+WantedBy=multi-user.target

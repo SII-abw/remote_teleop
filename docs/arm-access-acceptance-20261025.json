@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-25",
+  "unit_tests": {
+    "evo-rl": 78,
+    "remote-controller": 78
+  },
+  "frontend_contract": "passed",
+  "isolated_ros": {
+    "domain": 218,
+    "passed": true
+  },
+  "profile_three_process": {
+    "passed": true,
+    "time": 1792917196.0753732,
+    "custom_profiles_per_role": 2,
+    "three_role_persistence": true,
+    "profile_library_requires_restart": false,
+    "effective_interface_requires_restart": true,
+    "armed_save_rejected": true,
+    "hardware_opened": false,
+    "log_directory": "/tmp/remote-teleop-arm-config-20261025/state/smoke-teleop-robot-kauugsbd"
+  },
+  "hil_regression": {
+    "passed": [
+      {
+        "location": "robot",
+        "mode": "hil",
+        "frames": 301,
+        "states": {
+          "0.0": 200,
+          "1.0": 100,
+          "2.0": 1
+        },
+        "webrtc": true,
+        "dataset_compatible": true,
+        "log_directory": "/tmp/remote-teleop-arm-config-20261025/state/smoke-hil-robot-sjlv16cz"
+      }
+    ],
+    "time": 1792917209.787615
+  },
+  "browser_acceptance": {
+    "passed": true,
+    "device": "in-memory",
+    "custom_leader_profiles_survive_reload": 2
+  },
+  "hardware_motion_tested": false,
+  "optional_mode_without_channel_position_target": "passed"
+}

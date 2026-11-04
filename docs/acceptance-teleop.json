@@ -1,0 +1,16 @@
+{
+  "passed": [
+    {
+      "location": "robot",
+      "mode": "teleop",
+      "frames": 178,
+      "states": {
+        "0.0": 178
+      },
+      "webrtc": true,
+      "dataset_compatible": true,
+      "log_directory": "/home/siinuc2/Evo-RL/remote_teleop/state/smoke-teleop-robot-ygyfzx56"
+    }
+  ],
+  "time": 1792677824.524635
+}

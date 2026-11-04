@@ -1,0 +1,6 @@
+{
+  "metadata_handshake": false,
+  "exception": "InvalidStatus",
+  "inference_requested": false,
+  "http_status": 404
+}

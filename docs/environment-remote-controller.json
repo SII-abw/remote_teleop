@@ -1,0 +1,26 @@
+{
+  "python": "/home/siinuc2/miniconda3/envs/remote-controller/bin/python",
+  "python_version": "3.10.20",
+  "packages": {
+    "fastapi": "0.136.1",
+    "uvicorn": "0.46.0",
+    "pydantic": "2.13.3",
+    "websockets": "16.0",
+    "numpy": "1.26.4",
+    "aiortc": "1.14.0",
+    "av": "15.1.0",
+    "pyarrow": "24.0.0",
+    "torch": "2.7.1",
+    "opencv-python": "4.11.0.86",
+    "opencv-python-headless": "4.12.0.88",
+    "msgpack": "1.1.2",
+    "datasets": "4.1.1",
+    "feetech-servo-sdk": "1.0.0"
+  },
+  "upstream_sha256": {
+    "lerobot/remote_policy/openpi_http.py": "d84d4c05581356e3c5d7f03c9d8a605c72d7c74c4673da153176c30a6b8734ee",
+    "lerobot/datasets/lerobot_dataset.py": "afeafa394a556d131cfd2c3df4171cc87e78df0c468365fd88f0db3277c4297f",
+    "lerobot/teleoperators/sii_arm_leader/sii_arm_leader.py": "1652703f8a6f5b38501cc96443a585430d6c5b87bdc10b915499d512a4e5f3b4",
+    "lerobot/teleoperators/sii_arm_leader/config_sii_arm_leader.py": "a7733ab8f8ea930075968bea43e9043b851968ee9332508b14e4df31d8bc0c38"
+  }
+}

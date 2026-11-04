@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-25",
+  "unit_tests": {
+    "evo-rl": 94,
+    "remote-controller": 94
+  },
+  "frontend_controls": "passed",
+  "homing_smoke": {
+    "passed": true,
+    "hardware_opened": false,
+    "leader_and_follower_zero": true,
+    "armed_home_rejected": true,
+    "cancel_returns_disarmed": true,
+    "operator_loss_stops": true,
+    "estop_stops_homing": true,
+    "config_save_during_home_rejected": true,
+    "directory": "/tmp/remote-teleop-homing-20261025/state/smoke-teleop-robot-2hdiuy3f"
+  },
+  "hil_regression": {
+    "passed": [
+      {
+        "location": "robot",
+        "mode": "hil",
+        "frames": 300,
+        "states": {
+          "0.0": 199,
+          "1.0": 100,
+          "2.0": 1
+        },
+        "webrtc": true,
+        "dataset_compatible": true,
+        "log_directory": "/tmp/remote-teleop-homing-20261025/state/smoke-hil-robot-h6sf8hth"
+      }
+    ],
+    "time": 1792934307.2341359
+  },
+  "isolated_ros": {
+    "domain": 218,
+    "native_reset_two_subscribers": true,
+    "reset_start_and_exit_received": true
+  },
+  "site_reset_topics": {
+    "robot_reset": {
+      "type": "std_msgs/msg/Int32",
+      "subscribers": 2
+    },
+    "robot_prepare": {
+      "type": "std_msgs/msg/Int32",
+      "subscribers": 2
+    }
+  },
+  "real_homing_executed": false,
+  "deployment_status": "deployed_verified",
+  "live_services_changed": true
+}

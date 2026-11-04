@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-10-22T22:59:51+0800",
+  "duration_seconds": 15,
+  "ros_domain_id": 0,
+  "received": {
+    "/left/joint_targets": 750,
+    "/left/joint_states": 750,
+    "/right/joint_states": 632,
+    "/right/joint_targets": 632,
+    "/right/ARX_joint_states": 1182,
+    "/left/ARX_joint_states": 1178
+  },
+  "robot_target_and_mode_messages": {
+    "/left/ARX_joint_targets": 0,
+    "/right/ARX_joint_targets": 0,
+    "/master/set_control_mode_left": 0,
+    "/master/set_control_mode_right": 0
+  },
+  "leader_target_publishers": {
+    "/left/joint_targets": [
+      "remote_teleop_leader",
+      "OpenEAIArm_node"
+    ],
+    "/right/joint_targets": [
+      "OpenEAIArm_node",
+      "remote_teleop_leader"
+    ]
+  },
+  "note": "OpenEAI publishes joint_targets echoes in drag mode. Humble rclpy callbacks cannot attribute individual messages to a publisher.",
+  "passive": true
+}

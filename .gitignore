@@ -1,0 +1,31 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+/state/
+/datasets/
+*.key
+*.pem
+.env
+._*
+.DS_Store
+
+# Machine-local deployment and generated credentials
+.venv*/
+venv/
+configs/local/
+configs/siinuc/
+*.lock
+.env.*
+credentials*.json
+*token*.txt
+*.crt
+*.p12
+*.pfx
+.coverage
+htmlcov/
+# ConfigStore recovery baseline generated for template validation
+configs/defaults/

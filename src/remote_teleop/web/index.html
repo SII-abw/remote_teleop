@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Evo Remote · Operator</title>
+    <link rel="stylesheet" href="/assets/style.css" />
+    <script type="module" src="/assets/app.js"></script>
+  </head>
+  <body>
+    <aside>
+      <div class="brand">
+        <span class="brand-mark">E</span>
+        <div>
+          EVO REMOTE<small data-i18n="operatorConsole">遥操作工作台</small>
+        </div>
+      </div>
+      <nav>
+        <button data-page="operate" class="selected">
+          <span>01</span><b data-i18n="operate">作业控制</b></button
+        ><button data-page="configure">
+          <span>02</span><b data-i18n="configure">配置中心</b></button
+        ><button data-page="datasets">
+          <span>03</span><b data-i18n="datasets">数据集检查</b>
+        </button>
+      </nav>
+      <div class="side-footer">
+        <span class="dot" id="connection-dot"></span
+        ><span id="connection" data-i18n="offline">未连接</span
+        ><small>PYTHON PLATFORM · v0.1</small>
+      </div>
+    </aside>
+    <div class="workspace">
+      <header>
+        <div>
+          <span class="eyebrow">REMOTE OPERATIONS</span>
+          <h1 id="page-title">作业控制</h1>
+        </div>
+        <div class="header-actions">
+          <span id="simulation" class="badge" data-i18n="environmentPending"
+            >设备模式待确认</span
+          ><button id="language">English</button
+          ><button id="logout" data-i18n="logout">退出</button>
+        </div>
+      </header>
+      <main>
+        <section id="page-operate" class="page">
+          <div class="status-grid">
+            <article>
+              <label data-i18n="controlMode">控制状态</label
+              ><strong id="control-mode">—</strong><small id="reason">—</small>
+            </article>
+            <article>
+              <label data-i18n="telemetryAge">状态更新间隔</label
+              ><strong id="telemetry-age">—</strong
+              ><small data-i18n="robotAuthority">机器人端确认的状态</small>
+            </article>
+            <article>
+              <label id="recorded-frames-label" data-i18n="recordedFrames">已录制帧数</label
+              ><strong id="recorded-frames">0</strong
+              ><small id="record-state">—</small>
+            </article>
+            <article>
+              <label data-i18n="runnerLocation">策略请求位置</label
+              ><strong id="runner">—</strong><small id="leader-health">—</small>
+            </article>
+          </div>
+          <div class="operation-grid">
+            <div class="video-area">
+              <div class="panel-title">
+                <h2 data-i18n="liveViews">实时视角</h2>
+                <span class="muted" data-i18n="measuredFeedback"
+                  >主臂跟随从臂实际反馈</span
+                >
+              </div>
+              <div class="camera-grid">
+                <div class="main-video video-card">
+                  <img id="video-main" alt="Main camera" />
+                  <div>
+                    <span data-i18n="main">主视角</span
+                    ><span class="video-age" data-camera="main">—</span>
+                  </div>
+                </div>
+                <div class="hand-videos">
+                  <div class="video-card">
+                    <img id="video-left_hand" alt="Left hand camera" />
+                    <div>
+                      <span data-i18n="left_hand">左手</span
+                      ><span class="video-age" data-camera="left_hand">—</span>
+                    </div>
+                  </div>
+                  <div class="video-card">
+                    <img id="video-right_hand" alt="Right hand camera" />
+                    <div>
+                      <span data-i18n="right_hand">右手</span
+                      ><span class="video-age" data-camera="right_hand">—</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="control-panel">
+              <div class="control-heading">
+                <h2 id="session-title" data-i18n="sessionControl">会话控制</h2>
+                <span class="tiny" data-i18n="controlScrollHint">独立滚动 · 更多操作 ↓</span>
+              </div>
+              <div class="control-scroll" role="region" aria-labelledby="session-title" tabindex="0">
+                <p id="operation-guide" class="muted" data-i18n="operationGuide">
+                  先完成自检并准备录制，再使能和开始任务。
+                </p>
+                <p id="hardware-readiness" class="muted hidden"></p>
+                <p id="velocity-readiness" class="tiny hidden" role="status"></p>
+                <div class="button-pair">
+                  <button data-control="arm" data-i18n="arm">使能</button
+                  ><button data-control="start" class="primary" data-i18n="start">
+                    开始任务
+                  </button>
+                </div>
+                <button data-control="toggle" id="takeover" class="wide takeover">
+                  <span data-i18n="takeover">接管 / 交还策略</span
+                  ><kbd id="toggle-key">I</kbd>
+                </button>
+                <p id="gripper-takeover-guidance" class="tiny hidden" role="status" aria-live="polite"></p>
+                <div class="button-pair">
+                  <button data-control="pause" data-i18n="pause">安全暂停</button
+                  ><button data-control="disarm" data-i18n="disarm">
+                    解除使能
+                  </button>
+                </div>
+                <button data-control="reset" class="wide" data-i18n="reset">
+                  确认故障已排除并复位</button
+                >
+                <hr />
+                <h2 data-i18n="episode">Episode 录制</h2>
+                <div id="task-session" class="task-session hidden">
+                  <label class="field-label" for="task-select" data-i18n="currentTask">当前任务</label>
+                  <div class="task-toolbar">
+                    <select id="task-select" aria-label="当前任务"></select>
+                    <button id="new-task" type="button" data-i18n="newTask">New task</button>
+                  </div>
+                  <p id="task-current-prompt" class="task-prompt"></p>
+                  <p id="task-guidance" class="tiny"></p>
+                </div>
+                <label
+                  class="field-label"
+                  for="dataset-name"
+                  data-i18n="automaticEpisodeName"
+                  >下一条轨迹（自动命名）</label
+                ><input
+                  id="dataset-name"
+                  value="episode"
+                  autocomplete="off"
+                  readonly
+                  aria-readonly="true"
+                />
+                <p id="record-guidance" class="tiny" role="status" aria-live="polite"></p>
+                <button id="record-name-suggestion" class="wide subtle hidden" data-i18n="useAvailableName">使用可用名称</button>
+                <button id="record-start" class="wide" data-i18n="recordStart">
+                  开始录制
+                </button>
+                <div class="button-pair">
+                  <button
+                    data-outcome="success"
+                    class="success"
+                    data-i18n="success"
+                  >
+                    成功并保存</button
+                  ><button data-outcome="failure" data-i18n="failure">
+                    失败并保存
+                  </button>
+                </div>
+                <button
+                  data-outcome="discard"
+                  class="wide subtle"
+                  data-i18n="discard"
+                >
+                  丢弃本次 Episode
+                </button>
+                <div id="record-detail" class="tiny"></div>
+                <hr />
+                <h2 data-i18n="homingTitle">机械臂回零</h2>
+                <p class="tiny" data-i18n="homingHint">回零会实际移动所选双臂并闭合夹爪。仅在未使能且未录制时启动，完成后保持未使能。</p>
+                <div class="button-pair">
+                  <button id="home-robot" data-home="robot" data-i18n="homeRobot">从臂回零</button>
+                  <button id="home-leader" data-home="leader" data-i18n="homeLeader">遥操臂回零</button>
+                </div>
+                <button id="home-cancel" data-control="home_cancel" class="wide" data-i18n="homeCancel" disabled>取消回零并保持</button>
+                <p id="homing-status" class="tiny" role="status" aria-live="polite"></p>
+                <details id="simulation-controls" class="panel hidden">
+                  <summary data-i18n="simulationControls">仿真主臂控制</summary>
+                  <p class="muted" data-i18n="simulationHint">
+                    人工接管后拖动滑条，验证动作传输、接管和录制。
+                  </p>
+                  <label
+                    ><span data-i18n="leftJoint">左臂关节 1</span
+                    ><input
+                      type="range"
+                      id="sim-left"
+                      min="-0.3"
+                      max="0.3"
+                      step="0.01"
+                      value="0" /></label
+                  ><label
+                    ><span data-i18n="rightJoint">右臂关节 1</span
+                    ><input
+                      type="range"
+                      id="sim-right"
+                      min="-0.3"
+                      max="0.3"
+                      step="0.01"
+                      value="0"
+                  /></label>
+                </details>
+                <details id="diagnostics-panel" class="panel">
+                  <summary data-i18n="diagnostics">诊断详情</summary>
+                  <pre id="diagnostics">—</pre>
+                </details>
+              </div>
+              <div class="control-stop">
+                <button
+                  data-control="estop"
+                  class="danger wide"
+                  data-i18n="estop"
+                >
+                  停止并锁存
+                </button>
+                <p class="tiny" data-i18n="stopHint">
+                  软件停止请求；现场硬件急停始终独立有效。复位不会启动回零运动。
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="page-configure" class="page hidden">
+          <div class="section-toolbar">
+            <div>
+              <h2 data-i18n="deploymentConfiguration">部署配置</h2>
+              <p class="muted" data-i18n="configHint">
+                未使能且未录制时保存：安全参数同步三端并立即生效，无需重启；设备连接等其他设置仍需重启。
+              </p>
+            </div>
+            <select id="config-target">
+              <option value="client" data-i18n="client">遥操客户端</option>
+              <option value="robot" data-i18n="robot">机器人端</option>
+              <option value="cloud" data-i18n="cloud">云端</option>
+            </select>
+          </div>
+          <details class="config-explanation">
+            <summary data-i18n="whyRestart">哪些配置可以实时生效？</summary>
+            <p class="muted" data-i18n="restartExplanation"></p>
+          </details>
+          <div
+            id="restart-banner"
+            class="notice hidden"
+            data-i18n="restartRequired"
+          >
+            安全参数已实时应用；其他已保存改动仍需重启。
+          </div>
+          <div class="config-layout">
+            <div id="config-categories" class="category-list"></div>
+            <div class="panel config-panel">
+              <div class="section-toolbar">
+                <h2 id="config-category-title">—</h2>
+                <input
+                  id="config-search"
+                  data-placeholder="searchFields"
+                  placeholder="搜索配置字段"
+                />
+              </div>
+              <form id="config-form"></form>
+              <details class="advanced">
+                <summary data-i18n="advancedJson">完整 JSON 配置</summary>
+                <textarea
+                  id="config-json"
+                  spellcheck="false"
+                  rows="18"
+                ></textarea
+                ><button id="apply-json" type="button" data-i18n="applyJson">
+                  从 JSON 更新表单
+                </button>
+              </details>
+              <p id="defaults-info" class="muted"></p>
+              <div class="config-actions">
+                <button id="restore-config" data-i18n="restoreDefaults">恢复默认配置</button>
+                <button id="reload-config" data-i18n="reload">重新加载</button
+                ><button id="validate-config" data-i18n="validate">校验</button
+                ><button
+                  id="save-config"
+                  class="primary"
+                  data-i18n="saveConfig"
+                >
+                  保存配置
+                </button>
+              </div>
+              <pre id="config-result" aria-live="polite"></pre>
+            </div>
+          </div>
+        </section>
+        <section id="page-datasets" class="page hidden">
+          <div class="section-toolbar">
+            <div>
+              <h2 data-i18n="datasetLibrary">机器人端数据集</h2>
+              <p class="muted" data-i18n="datasetHint">
+                只读检查允许目录中的 LeRobot
+                数据。检查不会修改、删除或自动转换原始数据。
+              </p>
+            </div>
+            <button id="refresh-datasets" data-i18n="refresh">刷新</button>
+          </div>
+          <div class="panel table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th data-i18n="name">名称</th>
+                  <th data-i18n="episodes">Episodes</th>
+                  <th data-i18n="frames">帧数</th>
+                  <th>FPS</th>
+                  <th data-i18n="robotType">机器人类型</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="dataset-list"></tbody>
+            </table>
+            <p id="dataset-empty" class="empty" data-i18n="noDatasets">
+              暂无数据集。可在配置中添加历史数据检查目录。
+            </p>
+          </div>
+          <div id="dataset-detail" class="hidden">
+            <div class="section-toolbar">
+              <h2 id="dataset-detail-title"></h2>
+              <span id="dataset-compatibility" class="badge"></span>
+            </div>
+            <div id="dataset-issues" class="panel"></div>
+            <div class="panel">
+              <h2 data-i18n="sampleTrace">采样动作与关节状态</h2>
+              <p class="tiny" data-i18n="sampleScope">
+                最多抽样 120 帧、扫描 200 个数据文件；不代表全量数据或视频验证。
+              </p>
+              <svg
+                id="trace"
+                viewBox="0 0 900 180"
+                role="img"
+                aria-label="Joint trajectory"
+              ></svg>
+              <div class="legend">
+                <span data-i18n="action">动作目标</span
+                ><span data-i18n="observation">实际状态</span>
+              </div>
+            </div>
+            <div id="dataset-previews" class="preview-grid"></div>
+            <div class="panel table-scroll">
+              <h2 data-i18n="episodeOutcomes">Episode 标签</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Episode</th>
+                    <th data-i18n="frames">帧数</th>
+                    <th data-i18n="outcome">结果</th>
+                  </tr>
+                </thead>
+                <tbody id="episode-list"></tbody>
+              </table>
+            </div>
+            <details class="panel">
+              <summary data-i18n="metadata">完整元数据与检查结果</summary>
+              <pre id="dataset-metadata"></pre>
+            </details>
+          </div>
+        </section>
+      </main>
+      <footer>
+        <span data-i18n="footer"
+          >控制权由机器人端确认 · 配置有版本 · 数据可追溯</span
+        >
+      </footer>
+    </div>
+    <div id="login-overlay" class="overlay">
+      <form id="login-form" class="login-card">
+        <span class="brand-mark">E</span>
+        <h2 data-i18n="loginTitle">连接遥操作工作台</h2>
+        <p data-i18n="loginHint">
+          输入 UI 访问令牌。令牌仅通过本机会话或 TLS 连接提交。
+        </p>
+        <input
+          id="login-token"
+          type="password"
+          required
+          autocomplete="current-password"
+          data-placeholder="accessToken"
+          placeholder="UI 访问令牌"
+        /><button class="primary wide" type="submit" data-i18n="connect">
+          连接
+        </button>
+        <p id="login-error" role="alert"></p>
+      </form>
+    </div>
+    <div id="task-dialog" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="task-dialog-title">
+      <form id="task-form" class="login-card task-card">
+        <h2 id="task-dialog-title" data-i18n="newTaskTitle">创建新任务</h2>
+        <p class="muted" data-i18n="newTaskHint">输入任务 prompt。之后每条轨迹自动顺序命名，无需重复输入。</p>
+        <label class="field-label" for="task-prompt" data-i18n="taskPrompt">任务 prompt</label>
+        <textarea id="task-prompt" rows="5" maxlength="1000" required></textarea>
+        <p id="task-error" class="task-error" role="alert"></p>
+        <div class="button-pair">
+          <button id="task-cancel" type="button" data-i18n="cancelTask">取消</button>
+          <button id="task-create" type="submit" class="primary" data-i18n="createTask">创建任务</button>
+        </div>
+      </form>
+    </div>
+    <div id="toast" role="status" class="toast hidden"></div>
+    <section id="fault-dialog" class="fault-dialog hidden" role="alertdialog" aria-modal="false"
+      aria-labelledby="fault-title" aria-describedby="fault-message fault-recovery">
+      <div class="fault-heading"><strong id="fault-title"></strong><span id="fault-count" class="tiny"></span></div>
+      <p id="fault-message"></p>
+      <pre id="fault-detail"></pre>
+      <p id="fault-recovery"></p>
+      <p class="tiny" data-i18n="faultAcknowledgeHint">关闭提示不会复位或自动恢复运动。</p>
+      <div class="fault-actions">
+        <button id="fault-diagnostics" data-i18n="viewDiagnostics">查看诊断</button>
+        <button id="fault-dismiss" class="primary" data-i18n="acknowledge">知道了</button>
+        <button id="fault-stop" class="danger" data-i18n="estop">停止并锁存</button>
+      </div>
+    </section>
+  </body>
+</html>

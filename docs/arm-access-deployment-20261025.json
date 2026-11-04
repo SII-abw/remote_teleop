@@ -1,0 +1,43 @@
+{
+  "deployed": true,
+  "date": "2026-10-25",
+  "backup": "/home/siinuc2/Evo-RL/remote_teleop/state/config-backups/arm-access-20261025-1792917496468554568",
+  "changed_files": [
+    "README.md",
+    "docs/ARM_ACCESS_CONFIGURATION.md",
+    "docs/arm-access-acceptance-20261025.json",
+    "docs/arm-access-preview.png",
+    "scripts/normalize_arm_profiles.py",
+    "src/remote_teleop/adapters/hardware.py",
+    "src/remote_teleop/arm_profiles.py",
+    "src/remote_teleop/config.py",
+    "src/remote_teleop/config_sync.py",
+    "src/remote_teleop/web/app.js",
+    "src/remote_teleop/web/i18n.js",
+    "src/remote_teleop/web/style.css",
+    "src/remote_teleop/webapp.py",
+    "tests/arm_profiles_smoke.py",
+    "tests/arm_profiles_ui.cjs",
+    "tests/ros_contract.py",
+    "tests/test_arm_interfaces.py",
+    "tests/test_arm_profiles.py",
+    "tests/test_profile_migration.py"
+  ],
+  "normalized_configs": [
+    "configs/siinuc/cloud.json",
+    "configs/siinuc/master.json",
+    "configs/siinuc/slave.json",
+    "configs/siinuc/defaults/cloud.json",
+    "configs/siinuc/defaults/master.json",
+    "configs/siinuc/defaults/slave.json"
+  ],
+  "effective_interfaces_preserved": true,
+  "safety_settings_preserved": true,
+  "services": "inactive",
+  "optional_mode_channel_independent_position_targets": true,
+  "unit_tests": {
+    "evo-rl": 78,
+    "remote-controller": 78
+  },
+  "followup_backup": "/home/siinuc2/Evo-RL/remote_teleop/state/config-backups/arm-access-20261025-1792917496468554568/optional-mode-before.tgz"
+}

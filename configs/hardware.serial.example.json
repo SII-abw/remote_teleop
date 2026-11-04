@@ -1,0 +1,294 @@
+{
+  "schema_version": 1,
+  "general": {
+    "robot_id": "dual-arm-01",
+    "simulation": false,
+    "operation_mode": "hil",
+    "task": "fold the shirt fast",
+    "log_level": "INFO"
+  },
+  "network": {
+    "gateway_url": "wss://gateway.example.invalid:8800",
+    "gateway_host": "0.0.0.0",
+    "gateway_port": 8800,
+    "ca_file": "state/ca.pem",
+    "certificate_file": "state/server-cert.pem",
+    "private_key_file": "state/server-key.pem",
+    "reconnect_seconds": 1.0,
+    "rpc_timeout_seconds": 8.0,
+    "telemetry_hz": 20,
+    "observation_hz": 10,
+    "max_message_bytes": 4194304,
+    "webrtc_enabled": true,
+    "ice_servers": [],
+    "turn_username_env": "TELEOP_TURN_USERNAME",
+    "turn_password_env": "TELEOP_TURN_PASSWORD"
+  },
+  "security": {
+    "credentials_file": "state/credentials.json",
+    "token_env": "",
+    "allow_loopback_http": true,
+    "ui_session_seconds": 3600,
+    "allowed_origins": []
+  },
+  "safety": {
+    "control_hz": 100,
+    "watchdog_ms": 250,
+    "watchdog_check_ms": 10,
+    "state_max_age_ms": 150,
+    "camera_max_age_ms": 300,
+    "observation_max_age_ms": 500,
+    "command_max_age_ms": 150,
+    "transition_timeout_seconds": 5.0,
+    "leader_lease_ms": 500,
+    "operator_lease_seconds": 3.0,
+    "alignment_tolerance": 0.12,
+    "tracking_error_limit": 0.5,
+    "require_cameras": true,
+    "hardware_validated": false,
+    "joint_min": [
+      -3.14,
+      -3.14,
+      -3.14,
+      -3.14,
+      -3.14,
+      -3.14,
+      0.0
+    ],
+    "joint_max": [
+      3.14,
+      3.14,
+      3.14,
+      3.14,
+      3.14,
+      3.14,
+      0.085
+    ],
+    "velocity_max": [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.08
+    ],
+    "acceleration_max": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.2
+    ]
+  },
+  "robot": {
+    "backend": "ros",
+    "arms": [
+      {
+        "name": "left",
+        "state_topic": "/left/ARX_joint_states",
+        "command_topic": "/left/ARX_joint_targets",
+        "joint_names": [
+          "joint_1",
+          "joint_2",
+          "joint_3",
+          "joint_4",
+          "joint_5",
+          "joint_6",
+          "joint_7"
+        ],
+        "stop_topic": "/left/remote_safety/stop",
+        "stop_state_topic": "/left/remote_safety/stopped"
+      },
+      {
+        "name": "right",
+        "state_topic": "/right/ARX_joint_states",
+        "command_topic": "/right/ARX_joint_targets",
+        "joint_names": [
+          "joint_1",
+          "joint_2",
+          "joint_3",
+          "joint_4",
+          "joint_5",
+          "joint_6",
+          "joint_7"
+        ],
+        "stop_topic": "/right/remote_safety/stop",
+        "stop_state_topic": "/right/remote_safety/stopped"
+      }
+    ],
+    "ros_domain_id": 0,
+    "startup_timeout_seconds": 10.0
+  },
+  "leader": {
+    "backend": "sii_serial",
+    "arms": [
+      {
+        "name": "left",
+        "state_topic": "/left/joint_states",
+        "target_topic": "/left/joint_targets",
+        "mode_topic": "/master/set_control_mode_left",
+        "mode_state_topic": "/master/control_mode_state_left",
+        "port": "/dev/ttyACM2",
+        "baudrate": 1000000,
+        "motor_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "directions": [
+          -1,
+          -1,
+          1,
+          1,
+          -1,
+          -1,
+          1
+        ],
+        "offsets": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "gripper_scale": 0.085,
+        "gripper_offset": -0.005,
+        "gripper_range_degrees": 40.0
+      },
+      {
+        "name": "right",
+        "state_topic": "/right/joint_states",
+        "target_topic": "/right/joint_targets",
+        "mode_topic": "/master/set_control_mode_right",
+        "mode_state_topic": "/master/control_mode_state_right",
+        "port": "/dev/ttyACM3",
+        "baudrate": 1000000,
+        "motor_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "directions": [
+          -1,
+          -1,
+          1,
+          1,
+          -1,
+          -1,
+          1
+        ],
+        "offsets": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "gripper_scale": 0.085,
+        "gripper_offset": -0.005,
+        "gripper_range_degrees": 40.0
+      }
+    ],
+    "feedback_hz": 60,
+    "passive_supported": false,
+    "serial_support_validated": false,
+    "calibration_file": "state/leader-calibration.json"
+  },
+  "cameras": [
+    {
+      "name": "main",
+      "backend": "usb",
+      "device": "/dev/v4l/by-path/pci-0000:00:14.0-usb-0:6:1.0-video-index0",
+      "topic": "",
+      "width": 640,
+      "height": 480,
+      "fps": 60,
+      "rotation": 180,
+      "fourcc": "MJPG",
+      "buffer_size": 1,
+      "warmup_frames": 10,
+      "configure_v4l2": true
+    },
+    {
+      "name": "left_hand",
+      "backend": "usb",
+      "device": "/dev/v4l/by-path/pci-0000:00:14.0-usb-0:4:1.0-video-index0",
+      "topic": "",
+      "width": 640,
+      "height": 480,
+      "fps": 60,
+      "rotation": 180,
+      "fourcc": "MJPG",
+      "buffer_size": 1,
+      "warmup_frames": 10,
+      "configure_v4l2": true
+    },
+    {
+      "name": "right_hand",
+      "backend": "usb",
+      "device": "/dev/v4l/by-path/pci-0000:00:14.0-usb-0:5:1.0-video-index0",
+      "topic": "",
+      "width": 640,
+      "height": 480,
+      "fps": 60,
+      "rotation": 180,
+      "fourcc": "MJPG",
+      "buffer_size": 1,
+      "warmup_frames": 10,
+      "configure_v4l2": true
+    }
+  ],
+  "policy": {
+    "runner_location": "robot",
+    "backend": "openpi",
+    "url": "wss://policy.example.invalid",
+    "policy_id": "shirt-policy-v1",
+    "api_key_env": "TELEOP_POLICY_API_KEY",
+    "request_format": "pi05",
+    "action_hz": 60,
+    "request_timeout_seconds": 2.0,
+    "max_queued_actions": 49,
+    "max_chunk_age_ms": 1000
+  },
+  "recording": {
+    "root": "datasets",
+    "inspection_roots": [
+      "/home/siinuc2/Evo-RL/data"
+    ],
+    "repo_id": "local/remote_teleop",
+    "fps": 60,
+    "codec": "h264",
+    "queue_size": 180,
+    "minimum_free_gb": 5.0,
+    "max_episode_seconds": 300,
+    "max_sync_skew_ms": 50,
+    "require_recording_for_hil": true,
+    "separate_episode_files": true
+  },
+  "ui": {
+    "host": "127.0.0.1",
+    "port": 8810,
+    "language": "zh",
+    "jpeg_quality": 80,
+    "display_fps": 20,
+    "intervention_key": "i",
+    "success_key": "s",
+    "failure_key": "f",
+    "discard_key": "a"
+  }
+}

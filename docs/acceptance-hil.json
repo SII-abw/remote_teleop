@@ -1,0 +1,44 @@
+{
+  "passed": [
+    {
+      "location": "robot",
+      "mode": "hil",
+      "frames": 301,
+      "states": {
+        "0.0": 202,
+        "1.0": 98,
+        "2.0": 1
+      },
+      "webrtc": true,
+      "dataset_compatible": true,
+      "log_directory": "/home/siinuc2/Evo-RL/remote_teleop/state/smoke-hil-robot-d_fprwrp"
+    },
+    {
+      "location": "client",
+      "mode": "hil",
+      "frames": 280,
+      "states": {
+        "0.0": 187,
+        "1.0": 92,
+        "2.0": 1
+      },
+      "webrtc": true,
+      "dataset_compatible": true,
+      "log_directory": "/home/siinuc2/Evo-RL/remote_teleop/state/smoke-hil-client-mw67xurj"
+    },
+    {
+      "location": "cloud",
+      "mode": "hil",
+      "frames": 296,
+      "states": {
+        "0.0": 197,
+        "1.0": 98,
+        "2.0": 1
+      },
+      "webrtc": true,
+      "dataset_compatible": true,
+      "log_directory": "/home/siinuc2/Evo-RL/remote_teleop/state/smoke-hil-cloud-b_6v0djj"
+    }
+  ],
+  "time": 1792678028.0764647
+}

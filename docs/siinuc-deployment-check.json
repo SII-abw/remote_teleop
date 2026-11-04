@@ -1,0 +1,122 @@
+{
+  "checked_at": "2026-10-22T22:59:44+0800",
+  "samples": 40,
+  "verified_tls": true,
+  "configurations": {
+    "client": {
+      "revision": "e1508d0143a01a828fa976ccb8538a4f9377420bfc8fd96acbdac9b693a50d4d",
+      "simulation": false
+    },
+    "robot": {
+      "revision": "0db855dbf0381e80ac3b2a7178cbaa0d9bded53b7c7258a016487fb64d427535",
+      "simulation": false
+    },
+    "cloud": {
+      "revision": "0db855dbf0381e80ac3b2a7178cbaa0d9bded53b7c7258a016487fb64d427535",
+      "simulation": false
+    }
+  },
+  "last_status": {
+    "type": "status",
+    "mode": "DISARMED",
+    "reason": "DISARMED",
+    "epoch": "121b7d65c2124b849781b8f8fbbc17a1",
+    "leader_ready": false,
+    "recording": false,
+    "operation_mode": "teleop",
+    "runner_location": "robot",
+    "last_seq": -1,
+    "q": [
+      -0.00438690185546875,
+      -0.00019073486328125,
+      0.01392364501953125,
+      -0.00324249267578125,
+      -0.00324249267578125,
+      -0.01850128173828125,
+      -0.0080108642578125,
+      -0.00171661376953125,
+      -0.00171661376953125,
+      0.00896453857421875,
+      -0.00133514404296875,
+      -0.00324249267578125,
+      -0.01392364501953125,
+      -0.0019073486328125
+    ],
+    "observation_id": "9cfb38cd6acc44c9957aa77cc6b56262",
+    "healthy": true,
+    "state_age_ms": 10.471629007952288,
+    "cameras": {
+      "left_hand": {
+        "age_ms": 16.41369500430301
+      },
+      "main": {
+        "age_ms": 12.334975996054709
+      },
+      "right_hand": {
+        "age_ms": 0.334418989950791
+      }
+    },
+    "recorder": {
+      "state": "IDLE",
+      "error": null,
+      "frames": 0,
+      "queued": 0,
+      "dataset": null
+    },
+    "rejected_commands": 0,
+    "record_job": null,
+    "last_rejection": null,
+    "simulation": false,
+    "stop_confirmed": true,
+    "stop_confirmation": "position_hold",
+    "motion_permitted": false,
+    "v": 1,
+    "source": "robot",
+    "leader_q": [
+      0.046122074127197266,
+      -0.157132089138031,
+      0.061383724212646484,
+      0.0018639564514160156,
+      -0.00873112678527832,
+      -0.008737802505493164,
+      0.0006444339524023235,
+      0.1133466437458992,
+      -0.16751337051391602,
+      0.07251870632171631,
+      -0.26746225357055664,
+      -0.04916799068450928,
+      0.033605217933654785,
+      0.0
+    ],
+    "leader_state_age_ms": 20.876067981589586,
+    "connected": true,
+    "telemetry_age_ms": 32.90494601242244,
+    "leader_error": null,
+    "language": "zh",
+    "shortcuts": {
+      "intervention_key": "i",
+      "success_key": "s",
+      "failure_key": "f",
+      "discard_key": "a"
+    },
+    "video": {
+      "left_hand": {
+        "age_ms": 8.2822369877249
+      },
+      "main": {
+        "age_ms": 3.9310790016315877
+      },
+      "right_hand": {
+        "age_ms": 12.313017999986187
+      }
+    }
+  },
+  "max_state_age_ms": 10.471629007952288,
+  "max_video_age_ms": {
+    "main": 37.53033099928871,
+    "left_hand": 41.61656700307503,
+    "right_hand": 46.681577019626275
+  },
+  "datasets_found": 28,
+  "motion_tested": false
+}

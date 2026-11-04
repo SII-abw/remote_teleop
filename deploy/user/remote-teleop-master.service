@@ -1,0 +1,20 @@
+[Unit]
+Description=Siinuc remote teleoperation ROS leader and operator UI
+After=remote-teleop-cloud.service remote-teleop-slave.service
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+Type=simple
+WorkingDirectory=/home/siinuc2/Evo-RL/remote_teleop
+ExecStart=/bin/bash /home/siinuc2/Evo-RL/remote_teleop/scripts/run.sh master
+Environment=TELEOP_ROS_SETUP=/opt/ros/humble/setup.bash
+Environment=OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=30
+UMask=0077
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target

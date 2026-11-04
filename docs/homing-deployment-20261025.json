@@ -1,0 +1,64 @@
+{
+  "deployed": true,
+  "date": "2026-10-25",
+  "backup": "/home/siinuc2/Evo-RL/remote_teleop/state/config-backups/homing-20261025-1792934822937639498",
+  "files": [
+    "src/remote_teleop/gateway.py",
+    "src/remote_teleop/config.py",
+    "src/remote_teleop/webapp.py",
+    "src/remote_teleop/control.py",
+    "src/remote_teleop/arm_profiles.py",
+    "src/remote_teleop/runtime.py",
+    "src/remote_teleop/homing.py",
+    "src/remote_teleop/web/index.html",
+    "src/remote_teleop/web/i18n.js",
+    "src/remote_teleop/web/app.js",
+    "src/remote_teleop/adapters/hardware.py",
+    "tests/arm_profiles_ui.cjs",
+    "tests/homing_smoke.py",
+    "tests/test_homing.py",
+    "tests/ros_contract.py",
+    "tests/test_arm_interfaces.py",
+    "docs/homing-preview.png",
+    "docs/HOMING.md",
+    "docs/homing-acceptance-20261025.json",
+    "README.md"
+  ],
+  "configs": [
+    "configs/siinuc/cloud.json",
+    "configs/siinuc/master.json",
+    "configs/siinuc/slave.json",
+    "configs/siinuc/defaults/cloud.json",
+    "configs/siinuc/defaults/master.json",
+    "configs/siinuc/defaults/slave.json"
+  ],
+  "existing_settings_preserved": true,
+  "site_follower_method": "trajectory",
+  "site_leader_reset_topic": "/robot_reset",
+  "real_homing_executed": false,
+  "unit_tests": {
+    "evo-rl": 94,
+    "remote-controller": 94
+  },
+  "verification": {
+    "mode": "DISARMED",
+    "recorder": {
+      "state": "IDLE",
+      "error": null,
+      "frames": 0,
+      "queued": 0,
+      "dataset": null
+    },
+    "homing": null,
+    "connected": true,
+    "telemetry_age_ms": 38.43785700155422,
+    "leader_state_age_ms": 28.549687995109707,
+    "leader_error": null,
+    "motion_permitted": true,
+    "config_synchronized": null,
+    "config_contracts_equal": true,
+    "restart_required": false,
+    "homing_schema": true,
+    "real_homing_executed": false
+  }
+}
